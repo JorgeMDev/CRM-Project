@@ -1,6 +1,16 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { FormLabel } from '@mui/material'
+import Button from '@mui/material/Button'
+import Input from '@mui/material/Input';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Box from '@mui/material/Box';
+import { FormControl } from '@mui/material';
+import { FormGroup } from '@mui/material';
+import Checkbox from '@mui/material/Checkbox';
+
 
 
 const CreateRep = () => {
@@ -13,13 +23,13 @@ const CreateRep = () => {
   const [password, setPassword] = useState('')
   const [office, setOffice] = useState('')
   const [address, setAddress] = useState('')
-  const [phone, setPhone] = useState()
-  const [dob, setDob] = useState()
+  const [phone, setPhone] = useState(0)
+  const [dob, setDob] = useState('')
   const [gender, setGender] = useState('')
-  const [maritalStatus, setMaritalStatus] = useState()
-  const [referral, setReferral] = useState()
-  const [education, setEducation] = useState()
-  const [ethnicity, setEthnicity] = useState()
+  const [maritalStatus, setMaritalStatus] = useState('')
+  const [referral, setReferral] = useState('')
+  const [education, setEducation] = useState('')
+  const [ethnicity, setEthnicity] = useState('')
   const [isAdmin, setIsAdmin] = useState(false)
 
   //variable to hanlde errors on validation
@@ -58,93 +68,96 @@ const CreateRep = () => {
     <div>
       <h1>Add a New Representative</h1>
       {/* REGISTRATION FORM FOR NEW REP */}
-      <button onClick={handleHome}>back to Dashboard</button>
+      <Button size="small" variant='outlined' onClick={handleHome}>back to Dashboard</Button>
+      <Box sx={{display:'flex', justifyContent: 'center'}}>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>First name:</label>
-          <input type='text' name='firstName' value={firstName}  onChange={(e)=>setFirstName(e.target.value)}/>
-        </div>
-        <div>
-          <label>Last name:</label>
-          <input type='text' name='lastName' value={lastName}  onChange={(e)=>setLastName(e.target.value)}/>
-        </div>
-        <div>
-          <label>Phone number:</label>
-          <input type='number' name='phone' value={phone}  onChange={(e)=>setPhone(e.target.value)}/>
-        </div>
-        <div>
-          <label>Email:</label>
-          <input type='text' name='email' value={email}  onChange={(e)=>setEmail(e.target.value)}/>
-        </div>
-        <div>
-          <label>Address:</label>
-          <input type='text' name='address' value={address}  onChange={(e)=>setAddress(e.target.value)}/>
-        </div>
-        <div>
-          <label>DOB:</label>
-          <input type='date' name='dob' value={dob}  onChange={(e)=>setDob(e.target.value)}/>
-        </div>
-        <div>
-          <label>Gender:</label>
-          <select type='text' name='gender' value={gender} onChange={(e)=>setGender(e.target.value)}>
+        <FormGroup sx={{width: 300}}>
+        <FormControl size='small'>
+          <FormLabel >First name:</FormLabel>
+          <Input type='text' name='firstName' value={firstName}  onChange={(e)=>setFirstName(e.target.value)}/>
+        </FormControl>
+        <FormControl>
+          <FormLabel>Last name:</FormLabel>
+          <Input type='text' name='lastName' value={lastName}  onChange={(e)=>setLastName(e.target.value)}/>
+        </FormControl>
+        <FormControl>
+          <FormLabel>Phone number:</FormLabel>
+          <Input type='number' name='phone' value={phone}  onChange={(e)=>setPhone(e.target.value)}/>
+        </FormControl>
+        <FormControl>
+          <FormLabel>Email:</FormLabel>
+          <Input type='text' name='email' value={email}  onChange={(e)=>setEmail(e.target.value)}/>
+        </FormControl>
+        <FormControl>
+          <FormLabel>Address:</FormLabel>
+          <Input type='text' name='address' value={address}  onChange={(e)=>setAddress(e.target.value)}/>
+        </FormControl>
+        <FormControl>
+          <FormLabel>DOB:</FormLabel>
+          <Input type='date' name='dob' value={dob}  onChange={(e)=>setDob(e.target.value)}/>
+        </FormControl>
+        <FormControl>
+          <FormLabel>Gender:</FormLabel>
+          <Select sx={{height:30}} type='text' name='gender' value={gender} onChange={(e)=>setGender(e.target.value)}>
             <option hidden>Choose gender</option>
-            <option value='Male'>Male</option>
-            <option value='Female'>Female</option>
-            <option value='Other'>Other</option>
-          </select>
-        </div>
-        <div>
-        <label>Marital Status:</label>
-          <select type='text' name='maritalstatus' value={maritalStatus} onChange={(e)=>setMaritalStatus(e.target.value)}>
-            <option hidden>Choose marital status:</option>
-            <option value='single'>Single</option>
-            <option value='married'>Married</option>
-            <option value='divorced'>Divorced</option>
-            <option value='widowed'>Widowed</option>
-          </select>
-        </div>
-        <div>
-          <label>Ethnicity:</label>
-          <select type='text' name='ethnicity' value={ethnicity} onChange={(e)=>setEthnicity(e.target.value)}>
+            <MenuItem value='Male'>Male</MenuItem>
+            <MenuItem value='Female'>Female</MenuItem>
+            <MenuItem value='Other'>Other</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl>
+        <FormLabel>Marital Status:</FormLabel>
+          <Select sx={{height:30}} type='text' name='maritalstatus' value={maritalStatus} onChange={(e)=>setMaritalStatus(e.target.value)}>
+            <MenuItem hidden>Choose marital status:</MenuItem>
+            <MenuItem value='single'>Single</MenuItem>
+            <MenuItem value='married'>Married</MenuItem>
+            <MenuItem value='FormControlorced'>FormControlorced</MenuItem>
+            <MenuItem value='widowed'>Widowed</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl>
+          <FormLabel>Ethnicity:</FormLabel>
+          <Select sx={{height:30}} type='text' name='ethnicity' value={ethnicity} onChange={(e)=>setEthnicity(e.target.value)}>
             <option hidden>Choose:</option>
-            <option value='white'>White</option>
-            <option value='africanameerican'>African American</option>
-            <option value='asian'>Asian</option>
-            <option value='hispanic'>Hispanic</option>
-          </select>
-        </div>
+            <MenuItem value='white'>White</MenuItem>
+            <MenuItem value='africanameerican'>African American</MenuItem>
+            <MenuItem value='asian'>Asian</MenuItem>
+            <MenuItem value='hispanic'>Hispanic</MenuItem>
+          </Select>
+        </FormControl>
         {/* UNCOMMENT THIS WHEN LOGIN AUTH IS IMPLEMENTED<div>
           <label>Password:</label>
-          <input type='text' name='password' value={password}  onChange={(e)=>setPassword(e.target.value)}/>
+          <Input type='text' name='password' value={password}  onChange={(e)=>setPassword(e.target.value)}/>
         </div> */}
-         <div>
-          <label>Referral:</label>
-          <input type='text' name='referral' value={referral}  onChange={(e)=>setReferral(e.target.value)}/>
-        </div>
-        <div>
-        <label>Education:</label>
-          <select type='text' name='education' value={education} onChange={(e)=>setEducation(e.target.value)}>
+         <FormControl>
+          <FormLabel>Referral:</FormLabel>
+          <Input type='text' name='referral' value={referral}  onChange={(e)=>setReferral(e.target.value)}/>
+        </FormControl>
+        <FormControl>
+        <FormLabel>Education:</FormLabel>
+          <Select sx={{height:30}} type='text' name='education' value={education} onChange={(e)=>setEducation(e.target.value)}>
             <option hidden>Choose education:</option>
-            <option value='highschool'>High School</option>
-            <option value='college'>College</option>
-            <option value='bachelor'>Bachelor's Degree</option>
-            <option value='master'>Master's Degree</option>
-            <option value='doctorate'>Doctorate</option>
-          </select>
-        </div>
-        <div>
-          <label>Office</label>
-          <select type='text' name='office' value={office} onChange={(e)=>setOffice(e.target.value)}>
+            <MenuItem value='highschool'>High School</MenuItem>
+            <MenuItem value='college'>College</MenuItem>
+            <MenuItem value='bachelor'>Bachelor's Degree</MenuItem>
+            <MenuItem value='master'>Master's Degree</MenuItem>
+            <MenuItem value='doctorate'>Doctorate</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl>
+          <FormLabel>Office</FormLabel>
+          <Select sx={{height:30}} type='text' name='office' value={office} onChange={(e)=>setOffice(e.target.value)}>
             <option hidden>Choose Office:</option>
-            <option value='VA'>Virginia</option>
-            <option value='MD'>Maryland</option>
-          </select>
-        </div>
-        <div>
-          <label>Admin?</label>
-          <input type='checkbox' name='isAdmin' value={isAdmin} onChange={handleCheck}/>
-        </div>
-        <button>Add Representative</button>
+            <MenuItem value='VA'>Virginia</MenuItem>
+            <MenuItem value='MD'>Maryland</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl>
+          <FormLabel>Admin?</FormLabel>
+          <Checkbox type='checkbox' name='isAdmin' value={isAdmin} onChange={handleCheck}/>
+        </FormControl>
+        <Button sx={{margin:4}} type="submit" size="small" variant='contained'>Add Representative</Button>
+        </FormGroup>
       </form>
         {/* SHOW ERRROR MESSAGE FOR VALIDATIONS */}
         {
@@ -152,6 +165,7 @@ const CreateRep = () => {
             <p key={i} syle={{color: 'red'}}>{eachErr}</p>
           ))
         }
+        </Box>
     </div>
   )
 }

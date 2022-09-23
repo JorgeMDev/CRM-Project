@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/crm_db', {
+mongoose.connect('mongodb+srv://root:root@crm.zwlxf1k.mongodb.net/crm_db?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

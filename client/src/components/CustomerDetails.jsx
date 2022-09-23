@@ -1,6 +1,18 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
+import moment from 'moment'
+import Button from '@mui/material/Button'
+import Input from '@mui/material/Input';
+import TextField from '@mui/material/TextField';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import { FormControl, FormLabel } from '@mui/material'
+
+
+
 
 const CustomerDetails = () => {
   const navigate = useNavigate()
@@ -15,9 +27,9 @@ const CustomerDetails = () => {
   const [price, setPrice] = useState()
   const [bank, setBank] = useState()
   const [approval, setApproval] = useState()
-  const [status, setStatus] = useState()
+  const [status, setStatus] = useState('')
   const [comments, setComments] = useState([])
-  const [repId, SetRepId] = useState()
+  const [repId, SetRepId] = useState('')
   const [allReps, setAllReps] = useState([])
   const {id} = useParams()
 
@@ -34,8 +46,8 @@ const CustomerDetails = () => {
         setOffice(response.data.office)
         setAddress(response.data.address)
         setPhone(response.data.phone)
-        setDob(response.data.dob)
-        setDoi(response.data.doi)
+        setDob(moment(response.data.dob).format("YYYY-MM-DD"))
+        setDoi(moment(response.data.doi).format('YYYY-MM-DD'))
         setPrice(response.data.price)
         setBank(response.data.bank)
         setApproval(response.data.approval)
@@ -85,86 +97,78 @@ const CustomerDetails = () => {
     <div>
       {/* UPDATE FORM FOR EXISTING CUSTOMER */}
     <h1>Update a Customer</h1>
-    <button onClick={handleHome}>back to Dashboard</button>
+    <Button size="small" variant='outlined' onClick={handleHome}>back to Dashboard</Button>
+    <Box sx={{display: 'flex', justifyContent: 'center', alignContent: 'space-around'}}>
     <form onSubmit={(e)=>handleSubmit(e)}>
-      <div>
-        <label>First name:</label>
-        <input type='text' name='firstName' value={firstName}  onChange={(e)=>setFirstName(e.target.value)}/>
-      </div>
-      <div>
-        <label>Last name:</label>
-        <input type='text' name='lastName' value={lastName}  onChange={(e)=>setLastName(e.target.value)}/>
-      </div>
-      <div>
-        <label>Phone number:</label>
-        <input type='number' name='phone' value={phone}  onChange={(e)=>setPhone(e.target.value)}/>
-      </div>
-      <div>
-        <label>Email:</label>
-        <input type='text' name='email' value={email}  onChange={(e)=>setEmail(e.target.value)}/>
-      </div>
-      <div>
-        <label>Address:</label>
-        <input type='text' name='address' value={address}  onChange={(e)=>setAddress(e.target.value)}/>
-      </div>
-      <div>
-        <label>DOB:</label>
-        <input type='date' name='dob' value={dob}  onChange={(e)=>setDob(e.target.value)}/>
-      </div>
-      <div>
-        <label>Date of installation:</label>
-        <input type='date' name='doi' value={doi}  onChange={(e)=>setDoi(e.target.value)}/>
-      </div>
-      <div>
-        <label>Office</label>
-        <select type='text' name='office' value={office} onChange={(e)=>setOffice(e.target.value)}>
-          <option hidden>Choose Office:</option>
-          <option value='VA'>Virginia</option>
-          <option value='MD'>Maryland</option>
-        </select>
-      </div>
-      <div>
-        <label>Price:</label>
-        <input type='number' name='price' value={price}  onChange={(e)=>setPrice(e.target.value)}/>
-      </div>
-      <div>
-        <label>Bank:</label>
-        <input type='text' name='bank' value={bank}  onChange={(e)=>setBank(e.target.value)}/>
-      </div>
-      <div>
-        <label>Approval:</label>
-        <input type='number' name='approval' value={approval}  onChange={(e)=>setApproval(e.target.value)}/>
-      </div>
-      <div>
-        <label>Status:</label>
-        <select type='text' name='status' value={status} onChange={(e)=>setStatus(e.target.value)}>
-          <option hidden>Choose status:</option>
-          <option value='Sold'>Sold</option>
-          <option value='Installed'>Installed</option>
-          <option value='Contract signed'>Contract Signed</option>
-          <option value='Verified'>Verified</option>
-          <option value='Paid'>Paid</option>
-        </select>
-      </div>
-      <div>
-      <label>Representative:</label>
-      <select type='text' name='rep' value={repId} onChange={(e)=>SetRepId(e.target.value)}>
-        <option>Select Rep:</option>
+      <Grid container sx={{boxShadow: 2, borderRadius: 2, padding: 5, marginTop: 2}}>
+       
+        <FormControl sx={{marginRight: 5}}>
+        <FormLabel>First name:</FormLabel>
+        <Input type='text' name='firstName' value={firstName}  onChange={(e)=>setFirstName(e.target.value)}/>
+       
+      
+        <FormLabel>Last name:</FormLabel>
+        <Input type='text' name='lastName' value={lastName}  onChange={(e)=>setLastName(e.target.value)}/>
+       
+        <FormLabel>Phone number:</FormLabel>
+        <Input type='number' name='phone' value={phone}  onChange={(e)=>setPhone(e.target.value)}/>
+     
+        <FormLabel>Email:</FormLabel>
+        <Input type='text' name='email' value={email}  onChange={(e)=>setEmail(e.target.value)}/>
+     
+        <FormLabel>Address:</FormLabel>
+        <Input type='text' name='address' value={address}  onChange={(e)=>setAddress(e.target.value)}/>
+     
+        <FormLabel>DOB:</FormLabel>
+        <Input type='date' name='dob' value={dob}  onChange={(e)=>setDob(e.target.value)}/>
+     
+        <FormLabel>Date of installation:</FormLabel>
+        <Input type='date' name='doi' value={doi}  onChange={(e)=>setDoi(e.target.value)}/>
+        </FormControl>
+  
+        <FormControl sx={{maxWidth: 200}}>
+        <FormLabel>Office</FormLabel>
+        <Select type='text' name='office' value={office} onChange={(e)=>setOffice(e.target.value)}>
+          <MenuItem value='VA'>Virginia</MenuItem>
+          <MenuItem value='MD'>Maryland</MenuItem>
+        </Select>
+    
+        <FormLabel>Price:</FormLabel>
+        <Input type='number' name='price' value={price}  onChange={(e)=>setPrice(e.target.value)}/>
+   
+        <FormLabel>Bank:</FormLabel>
+        <Input type='text' name='bank' value={bank}  onChange={(e)=>setBank(e.target.value)}/>
+     
+        <FormLabel>Approval:</FormLabel>
+        <Input type='number' name='approval' value={approval}  onChange={(e)=>setApproval(e.target.value)}/>
+     
+        <FormLabel>Status:</FormLabel>
+        <Select type='text' name='status' value={status} onChange={(e)=>setStatus(e.target.value)}>
+          <MenuItem value='Sold'>Sold</MenuItem>
+          <MenuItem value='Installed'>Installed</MenuItem>
+          <MenuItem value='Contract signed'>Contract Signed</MenuItem>
+          <MenuItem value='Verified'>Verified</MenuItem>
+          <MenuItem value='Paid'>Paid</MenuItem>
+        </Select>
+    
+      <FormLabel>Representative:</FormLabel>
+      <Select type='text' name='rep' value={repId} onChange={(e)=>SetRepId(e.target.value)}>
       {
         allReps.map((eachRep,i)=>(
-            <option key={i} value={eachRep._id}>{eachRep.firstName}  {eachRep.lastName}</option>
+            <MenuItem key={i} value={eachRep._id}>{eachRep.firstName}  {eachRep.lastName}</MenuItem>
         ))
       }
-      </select>
-      </div>
-       <div>
-        <label>Comments:</label>
+      </Select>
+    
+        <FormLabel>Comments:</FormLabel>
         <textarea name='comments' value={comments} onChange={(e)=>setComments(e.target.value)} rows='4' cols='50'>
         </textarea>
-      </div>
+      </FormControl>
    
-      <button>Update Customer</button>
+      </Grid>
+      <Button sx={{marginTop: 3, marginRight: 3}} type='submit' size="small" variant='contained'>Update Customer</Button>
     </form>
+    </Box>
       {/* SHOW ERRROR MESSAGE FOR VALIDATIONS */}
       {
         errors.map((eachErr,i)=>(

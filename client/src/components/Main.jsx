@@ -1,9 +1,11 @@
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import AdminTable from './AdminTable'
+import Histogram from './Histogram'
 
 const Main = () => {
   const [customers, setCustomers] = useState([])
+  const [repsWithCustomer, setRepWithCustomer] = useState([])
 
   useEffect(()=>{
     axios.get('http://localhost:8000/api/customers/all')
@@ -12,10 +14,20 @@ const Main = () => {
         setCustomers(response.data)
       })
       .catch(err=>console.log(err))
+
+      axios.get('http://localhost:8000/api/rep/all/customers')
+      .then(response=>{
+        console.log(response.data)
+        setRepWithCustomer(response.data)
+      })
+      .catch(err=>console.log(err))
+
   },[])
+
+
   //update list after delete
   const filterList = (deleteId) =>{
-    const updatedList = customers.filter((eachCust)=>deleteId!=eachCust._id)
+    const updatedList = customers.filter((eachCust)=>deleteId!==eachCust._id)
     setCustomers(updatedList)
   }
 
@@ -25,6 +37,7 @@ const Main = () => {
   return (
     <div>
       <AdminTable customers={customers} onDelete={filterList}/>
+      <Histogram repsWithCustomer={repsWithCustomer} customers={customers}/>
     </div>
   )
 }

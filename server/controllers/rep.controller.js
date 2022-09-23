@@ -61,7 +61,7 @@ module.exports.deleteRep = (req, res) => {
 module.exports.getAllCustomers = async(req, res) => {
     try{
         const data = await Rep.find().populate({path: 'totalCustomers'})
-        res.status(200).json({success: true,data})
+        res.status(200).json(data)
     } catch(err){
         res.status(400).json({success:false, message:err.message})
     }
