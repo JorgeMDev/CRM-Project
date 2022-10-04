@@ -2,6 +2,8 @@ import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import AdminTable from './AdminTable'
 import Histogram from './Histogram'
+import NavBar from './NavBar'
+
 
 const Main = () => {
   const [customers, setCustomers] = useState([])
@@ -36,8 +38,11 @@ const Main = () => {
 
   return (
     <div>
+      <NavBar/>
+      <div style={{marginLeft: 150, marginRight: 150}}>
       <AdminTable customers={customers} onDelete={filterList}/>
       <Histogram repsWithCustomer={repsWithCustomer} customers={customers}/>
+      </div>
     </div>
   )
 }

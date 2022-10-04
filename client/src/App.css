@@ -7,6 +7,10 @@
   pointer-events: none;
 }
 
+.App {
+  padding: 3%;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -35,4 +39,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.nav-bar {
+  border: 1px solid #282c34;
+  display: flex;
+  justify-content: space-around;
+  padding: 1%;
+
+}
+
+h1 {
+  color: #1543a0;
+  margin: 1%;
+}
+
+.form-element {
+  padding: 5%;
 }

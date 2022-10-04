@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
+import NavBar from './NavBar'
 
 const CreateCustomer = () => {
     //Delcaring all states needed in the form
@@ -72,8 +73,10 @@ const CreateCustomer = () => {
 
   return (
     <div>
+           <NavBar/>   
+           <div  style={{marginLeft: 150, marginRight: 150}} >
     <h1>Add a New Customer</h1>
-    <Button size="small" variant='outlined' onClick={handleHome}>Back to Dashboard</Button>
+    <Button sx={{marginLeft:10}} size="small" variant='outlined' onClick={handleHome}>Back to Dashboard</Button>
     {/* REGISTRATION FORM FOR NEW REP */}
     <Box sx={{display: 'flex', justifyContent: 'center'}}>
     <form onSubmit={(e)=>handleSubmit(e,repId)}>
@@ -176,6 +179,7 @@ const CreateCustomer = () => {
         ))
       }
       </Box>
+      </div>
   </div>
   )
 }

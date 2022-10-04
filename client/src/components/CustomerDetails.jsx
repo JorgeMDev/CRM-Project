@@ -10,6 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { FormControl, FormLabel } from '@mui/material'
+import NavBar from './NavBar'
 
 
 
@@ -95,6 +96,8 @@ const CustomerDetails = () => {
 
   return (
     <div>
+      <NavBar/>
+        <div style={{marginLeft: 150, marginRight: 150}}>
       {/* UPDATE FORM FOR EXISTING CUSTOMER */}
     <h1>Update a Customer</h1>
     <Button size="small" variant='outlined' onClick={handleHome}>back to Dashboard</Button>
@@ -175,6 +178,7 @@ const CustomerDetails = () => {
           <p key={i} syle={{color: 'red'}}>{eachErr}</p>
         ))
       }
+      </div>
   </div>
   )
 }

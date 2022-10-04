@@ -10,6 +10,9 @@ import Box from '@mui/material/Box';
 import { FormControl } from '@mui/material';
 import { FormGroup } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
+import NavBar from './NavBar'
+import '../App.css';
+
 
 
 
@@ -65,38 +68,51 @@ const CreateRep = () => {
   }
 
   return (
-    <div>
-      <h1>Add a New Representative</h1>
+    <div >
+       <NavBar/>    
+       <div style={{marginLeft: 150, marginRight: 150}}>
+      <h1 style={{textAlign: "Left"}}>Add a New Representative</h1>
       {/* REGISTRATION FORM FOR NEW REP */}
-      <Button size="small" variant='outlined' onClick={handleHome}>back to Dashboard</Button>
-      <Box sx={{display:'flex', justifyContent: 'center'}}>
-      <form onSubmit={handleSubmit}>
-        <FormGroup sx={{width: 300}}>
-        <FormControl size='small'>
+      <Button sx={{marginLeft:"10%"}} size="small" variant='outlined' onClick={handleHome}>back to Dashboard</Button>
+     
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', width: 550, marginLeft: "30%", marginTop: 40}}>
+        <Box sx={{display:'flex', justifyContent: 'center', boxShadow: 3, padding: 5}}>
+          <div>
+          <div className='form-element'>
           <FormLabel >First name:</FormLabel>
           <Input type='text' name='firstName' value={firstName}  onChange={(e)=>setFirstName(e.target.value)}/>
-        </FormControl>
-        <FormControl>
+          </div>
+          
+          <div className='form-element'>
           <FormLabel>Last name:</FormLabel>
           <Input type='text' name='lastName' value={lastName}  onChange={(e)=>setLastName(e.target.value)}/>
-        </FormControl>
-        <FormControl>
+          </div>
+
+          <div className='form-element'>
           <FormLabel>Phone number:</FormLabel>
           <Input type='number' name='phone' value={phone}  onChange={(e)=>setPhone(e.target.value)}/>
-        </FormControl>
-        <FormControl>
+          </div>
+
+          <div className='form-element'>
           <FormLabel>Email:</FormLabel>
           <Input type='text' name='email' value={email}  onChange={(e)=>setEmail(e.target.value)}/>
-        </FormControl>
-        <FormControl>
+          </div>
+
+          <div className='form-element'>
           <FormLabel>Address:</FormLabel>
           <Input type='text' name='address' value={address}  onChange={(e)=>setAddress(e.target.value)}/>
-        </FormControl>
-        <FormControl>
+          </div>
+
+          <div className='form-element'>
           <FormLabel>DOB:</FormLabel>
           <Input type='date' name='dob' value={dob}  onChange={(e)=>setDob(e.target.value)}/>
-        </FormControl>
-        <FormControl>
+          </div>
+          </div>
+  
+
+
+          <div>
+          <div className='form-element'>
           <FormLabel>Gender:</FormLabel>
           <Select sx={{height:30}} type='text' name='gender' value={gender} onChange={(e)=>setGender(e.target.value)}>
             <option hidden>Choose gender</option>
@@ -104,8 +120,10 @@ const CreateRep = () => {
             <MenuItem value='Female'>Female</MenuItem>
             <MenuItem value='Other'>Other</MenuItem>
           </Select>
-        </FormControl>
-        <FormControl>
+          </div>
+
+
+          <div className='form-element'>
         <FormLabel>Marital Status:</FormLabel>
           <Select sx={{height:30}} type='text' name='maritalstatus' value={maritalStatus} onChange={(e)=>setMaritalStatus(e.target.value)}>
             <MenuItem hidden>Choose marital status:</MenuItem>
@@ -114,8 +132,9 @@ const CreateRep = () => {
             <MenuItem value='FormControlorced'>FormControlorced</MenuItem>
             <MenuItem value='widowed'>Widowed</MenuItem>
           </Select>
-        </FormControl>
-        <FormControl>
+          </div>
+
+          <div className='form-element'>
           <FormLabel>Ethnicity:</FormLabel>
           <Select sx={{height:30}} type='text' name='ethnicity' value={ethnicity} onChange={(e)=>setEthnicity(e.target.value)}>
             <option hidden>Choose:</option>
@@ -124,16 +143,18 @@ const CreateRep = () => {
             <MenuItem value='asian'>Asian</MenuItem>
             <MenuItem value='hispanic'>Hispanic</MenuItem>
           </Select>
-        </FormControl>
+          </div>
+          
+      
         {/* UNCOMMENT THIS WHEN LOGIN AUTH IS IMPLEMENTED<div>
           <label>Password:</label>
           <Input type='text' name='password' value={password}  onChange={(e)=>setPassword(e.target.value)}/>
         </div> */}
-         <FormControl>
+          <div className='form-element'>
           <FormLabel>Referral:</FormLabel>
           <Input type='text' name='referral' value={referral}  onChange={(e)=>setReferral(e.target.value)}/>
-        </FormControl>
-        <FormControl>
+          </div>
+          <div className='form-element'>
         <FormLabel>Education:</FormLabel>
           <Select sx={{height:30}} type='text' name='education' value={education} onChange={(e)=>setEducation(e.target.value)}>
             <option hidden>Choose education:</option>
@@ -143,29 +164,34 @@ const CreateRep = () => {
             <MenuItem value='master'>Master's Degree</MenuItem>
             <MenuItem value='doctorate'>Doctorate</MenuItem>
           </Select>
-        </FormControl>
-        <FormControl>
+       
+
+        </div>
+        <div className='form-element'>
           <FormLabel>Office</FormLabel>
           <Select sx={{height:30}} type='text' name='office' value={office} onChange={(e)=>setOffice(e.target.value)}>
             <option hidden>Choose Office:</option>
             <MenuItem value='VA'>Virginia</MenuItem>
             <MenuItem value='MD'>Maryland</MenuItem>
           </Select>
-        </FormControl>
-        <FormControl>
+          </div>
+          </div>
+          </Box>
+           <div>
           <FormLabel>Admin?</FormLabel>
           <Checkbox type='checkbox' name='isAdmin' value={isAdmin} onChange={handleCheck}/>
-        </FormControl>
-        <Button sx={{margin:4}} type="submit" size="small" variant='contained'>Add Representative</Button>
-        </FormGroup>
+          </div>
+        <Button sx={{margin:4}} type="submit" size="small" variant='contained'>Add Representative</Button>  
       </form>
+    
         {/* SHOW ERRROR MESSAGE FOR VALIDATIONS */}
         {
           errors.map((eachErr,i)=>(
             <p key={i} syle={{color: 'red'}}>{eachErr}</p>
           ))
         }
-        </Box>
+        </div>
+
     </div>
   )
 }

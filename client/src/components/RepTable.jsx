@@ -10,6 +10,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import NavBar from './NavBar'
 
 
 
@@ -39,6 +40,8 @@ const RepTable = () => {
 
   return (
     <div>
+      <NavBar/>
+      <div style={{marginLeft: 150, marginRight: 150}}>
       <h1>List of Sales Representatives</h1>
       <div>
     <div>
@@ -74,6 +77,7 @@ const RepTable = () => {
     </TableBody>
    </Table>
    </TableContainer>
+   </div>
 
    </div> 
     </div>

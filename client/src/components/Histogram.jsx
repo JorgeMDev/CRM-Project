@@ -36,7 +36,7 @@ const Histogram = (props) => {
     
 
   return (
-    <div style={{width: 600, display: 'flex'}}>
+    <div style={{display: 'flex', flexFlow: 'column wrap', maxWidth: 1000, justifyContent: 'center', alignItems: 'center'}}>
     <Bar data={{
         labels: props.repsWithCustomer.map((eachRep)=> eachRep.firstName),
         datasets: [{
