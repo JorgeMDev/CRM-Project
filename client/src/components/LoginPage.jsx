@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +12,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../images/logo-no-background.png'
+import { useNavigate} from 'react-router-dom'
+import axios from 'axios'
 
 function Copyright(props) {
   return (
@@ -29,14 +31,30 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function LoginPage() {
+
+  const navigate = useNavigate()
+  const [user, setUser] = useState({
+    email: "",
+    password: ""
+  })
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    axios.post("http://localhost:8000/api/login", user, {withCredentials: true})
+    .then(res=> navigate('/'))
+    .catch(err => console.log(err.response))
+    
   };
+
+  const changeHandler = (e) => {
+    let {name, value} = e.target
+    setUser({
+      ...user,
+      [name]: value
+    })
+
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -63,8 +81,9 @@ export default function LoginPage() {
               label="Email Address"
               name="email"
               autoComplete="email"
+              value={user.email}
               autoFocus
-            />
+            onChange={changeHandler}/>
             <TextField
               margin="normal"
               required
@@ -73,7 +92,9 @@ export default function LoginPage() {
               label="Password"
               type="password"
               id="password"
+              value={user.password}
               autoComplete="current-password"
+              onChange={changeHandler}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

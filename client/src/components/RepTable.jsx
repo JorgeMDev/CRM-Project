@@ -20,7 +20,7 @@ const RepTable = () => {
 
   //api call for all reps
   useEffect(()=>{
-    axios.get('http://localhost:8000/api/reps')
+    axios.get('http://localhost:8000/api/reps', {withCredentials: true})
         .then(response=>{
             console.log(response.data)
             setAllReps(response.data) 

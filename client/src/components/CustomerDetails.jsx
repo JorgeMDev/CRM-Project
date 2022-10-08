@@ -67,7 +67,7 @@ const CustomerDetails = () => {
         setErrors(errMsgArr)
       })
 
-      axios.get('http://localhost:8000/api/reps')
+      axios.get('http://localhost:8000/api/reps', {withCredentials: true})
       .then(response=>{
           console.log(response.data)
           setAllReps(response.data) 
@@ -79,7 +79,7 @@ const CustomerDetails = () => {
   //call a put method to update customer
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios.put(`http://localhost:8000/api/customer/${id}`, {firstName, lastName, email, office, address, phone, dob, doi, price, bank,approval, status, comments, rep : repId})
+    axios.put(`http://localhost:8000/api/customer/${id}`, {firstName, lastName, email, office, address, phone, dob, doi, price, bank,approval, status, comments, rep : repId, withCredentials: true})
       .then(response=>{
         console.log(response.data)
         navigate('/')

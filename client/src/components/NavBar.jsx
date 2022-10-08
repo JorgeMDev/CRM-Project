@@ -2,12 +2,17 @@ import React from 'react'
 import { Button } from '@mui/material'
 import logo from '../images/logo-no-background.png'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const NavBar = () => {
     const navigate = useNavigate();
 
-    const handleLogout = () =>{
-        navigate('/login')
+    const handleLogout = () => {
+       axios.get('http://localhost:8000/api/logout', {withCredentials: true})
+       .then(response => {
+        console.log(response.data)
+        navigate('/login')})
+        .catch(err=>console.log(err.response))
     }
 
   return (

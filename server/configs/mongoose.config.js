@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('DATABASELINK', {
+mongoose.connect('mongodb+srv://root:root@crm.zwlxf1k.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

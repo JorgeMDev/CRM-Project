@@ -43,7 +43,7 @@ const CreateRep = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    axios.post('http://localhost:8000/api/rep', {firstName, lastName, email, office, address, phone, dob, gender, maritalStatus, referral,education, ethnicity, isAdmin})
+    axios.post('http://localhost:8000/api/rep', {firstName, lastName, email, office, address, phone, dob, gender, maritalStatus, referral,education, ethnicity, isAdmin, withCredentials: true})
       .then(response=>{
         console.log(response.data)
         navigate('/')

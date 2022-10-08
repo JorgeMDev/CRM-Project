@@ -6,18 +6,19 @@ import NavBar from './NavBar'
 
 
 const Main = () => {
+  const [users, setUsers] = useState(null)
   const [customers, setCustomers] = useState([])
   const [repsWithCustomer, setRepWithCustomer] = useState([])
 
   useEffect(()=>{
-    axios.get('http://localhost:8000/api/customers/all')
+    axios.get('http://localhost:8000/api/customers/all', {withCredentials: true})
       .then(response=>{
         console.log(response.data)
         setCustomers(response.data)
       })
       .catch(err=>console.log(err))
 
-      axios.get('http://localhost:8000/api/rep/all/customers')
+      axios.get('http://localhost:8000/api/rep/all/customers', {withCredentials: true})
       .then(response=>{
         console.log(response.data)
         setRepWithCustomer(response.data)

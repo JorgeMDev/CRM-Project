@@ -25,7 +25,7 @@ const AdminTable = (props) => {
   const [searchInput, setSearchInput] = useState('');
 
   const handleDelete = (deleteId) => {
-    axios.delete(`http://localhost:8000/api/customer/${deleteId}`)
+    axios.delete(`http://localhost:8000/api/customer/${deleteId}`, {withCredentials: true})
       .then(response=>{
         props.onDelete(deleteId)
       })
