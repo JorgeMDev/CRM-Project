@@ -1,2 +1,4 @@
 node_modules
 server/.env
+server/ mongoose.config.js
+server/ jwt.config.js
