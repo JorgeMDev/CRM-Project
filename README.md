@@ -33,6 +33,7 @@ Customer relationship management(CRM) system, designed to be able to see in real
 <li>Improve styling on barchart</li>
 <li>Add technician/installer module</li>
 <li>Add inventory module</li>
+<li>Registration</li>
 </ol>
 
 ![image](https://user-images.githubusercontent.com/66212799/197358637-ac2dbb5b-9797-4db1-90e4-3ca15597e6b7.png)
