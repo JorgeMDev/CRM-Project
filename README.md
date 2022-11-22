@@ -30,7 +30,8 @@ Customer relationship management(CRM) system, designed to be able to see in real
 <li>Make the website fully responsive</li>
 <li>Clear all warnings in console</li>
 <li>Add cards at top to see statuses</li>
-<li>Improve styling on barchart</li>
+<li>Change rep/user model for only user</li>
+<li>Add customer field ''type of watrer: well/city'</li>
 <li>Add technician/installer module</li>
 <li>Add inventory module</li>
 <li>Registration</li>
